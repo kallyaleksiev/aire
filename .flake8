@@ -1,0 +1,5 @@
+[flake8]
+max-line-length = 109
+exclude = __pycache__, build, dist
+extend-select = B950
+extend-ignore = E203,E501,E701

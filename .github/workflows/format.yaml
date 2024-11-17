@@ -1,0 +1,25 @@
+name: Format
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+    - name: Install dev depencies
+      run: poetry install
+    - name: Check formatting, importing, and typing
+      run: poetry run make check
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

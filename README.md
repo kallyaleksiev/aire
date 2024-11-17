@@ -8,7 +8,9 @@ natural language.
 ### Example
 
 ```
-p = compile("number indicating line item followed by a dot, space, and then the name of the section. Example is: 1. Introduction")
+import aire
+
+p = aire.compile("number indicating line item followed by a dot, space, and then the name of the section. Example is: 1. Introduction")
 
 print(p.search("2. Related Materials"))
 # <re.Match object; span=(0, 20), match='2. Related Materials'>

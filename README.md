@@ -1,11 +1,11 @@
 ## `aire`
 
-`aire` is an ai-powered `re` module.  It uses AI to figure out what the correct regex pattern is so you don't have to remember and relearn the rules. 
+Tired of wrestling with regex every once in a while? `aire` is an AI-powered `re` module.
 
 It exposes one primitive `compile` which is equivalent to `re.compile` but you describe what the regex should be in 
-natural language.
+natural language so you don't have to remember and relearn the rules. 
 
-### Example
+### 🚀 Quick Example
 
 ```
 import aire
@@ -16,7 +16,7 @@ print(p.search("2. Related Materials"))
 # <re.Match object; span=(0, 20), match='2. Related Materials'>
 ```
 
-### Installation
+### 🛠️ Installation
 
 It's recommended to use [`poetry`](https://python-poetry.org/docs/) for now:
 

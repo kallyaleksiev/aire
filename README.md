@@ -24,3 +24,7 @@ It's recommended to use [`poetry`](https://python-poetry.org/docs/) for now:
 poetry install 
 poetry shell 
 ```
+
+### 🤖 Which AI?
+
+Currently it only works with OpenAI. Add your API_KEY as environment variable `export OPENAI_API_KEY=...` and `aire` will configure the client. 

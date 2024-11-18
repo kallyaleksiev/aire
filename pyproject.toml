@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aire"
-version = "0.0.1"
+version = "0.0.2"
 description = "AI-powered re"
 authors = ["Kaloyan Aleksiev <67751757+kallyaleksiev@users.noreply.github.com>"]
 readme = "README.md"

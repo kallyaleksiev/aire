@@ -1,6 +1,6 @@
 import asyncio
 from collections import Counter
-from typing import Dict, cast
+from typing import cast
 
 from aire.errors import AIREError
 

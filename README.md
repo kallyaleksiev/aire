@@ -18,7 +18,13 @@ print(p.search("2. Related Materials"))
 
 ### 🛠️ Installation
 
-It's recommended to use [`poetry`](https://python-poetry.org/docs/) for now:
+Install from PyPI:
+
+```
+pip install aire
+```
+
+For local development, it's recommended to use [`poetry`](https://python-poetry.org/docs/):
 
 ```
 poetry install 

@@ -1,5 +1,6 @@
 import asyncio
-from typing import Dict, cast
+from collections import Counter
+from typing import cast
 
 from aire.errors import AIREError
 
@@ -31,7 +32,6 @@ async def async_get_pattern(
     best_of: int = 3,
     max_concurrent: int = 3,
 ) -> str:
-    result_cache: Dict[str, int] = {}
     user_prompt = _get_prompt(pattern_explanation)
 
     sem = asyncio.Semaphore(max_concurrent)
@@ -40,19 +40,16 @@ async def async_get_pattern(
     candidate_patterns = await asyncio.gather(*tasks)
 
     # majority vote
-    for pattern in candidate_patterns:
-        if pattern is not None:
-            result_cache[pattern] = result_cache.get(pattern, 0) + 1
-
-    try:
-        return cast(
-            str, max(result_cache, key=lambda x: result_cache.get(x, float("-inf")))
-        )
-
-    except ValueError:
+    pattern_counts = Counter(
+        pattern for pattern in candidate_patterns if pattern is not None
+    )
+    if not pattern_counts:
         raise AIREError(
             reason="Model failed to follow instructions at every time.",
         )
+    else:
+        top_pattern, _ = pattern_counts.most_common(1)[0]
+        return top_pattern
 
 
 def _get_prompt(

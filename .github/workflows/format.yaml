@@ -21,5 +21,3 @@ jobs:
       run: poetry install
     - name: Check formatting, importing, and typing
       run: poetry run make check
-      env:
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

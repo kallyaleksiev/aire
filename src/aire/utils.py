@@ -32,7 +32,6 @@ async def async_get_pattern(
     best_of: int = 3,
     max_concurrent: int = 3,
 ) -> str:
-    result_cache: Dict[str, int] = {}
     user_prompt = _get_prompt(pattern_explanation)
 
     sem = asyncio.Semaphore(max_concurrent)
@@ -41,7 +40,9 @@ async def async_get_pattern(
     candidate_patterns = await asyncio.gather(*tasks)
 
     # majority vote
-    pattern_counts = Counter(pattern for pattern in candidate_patterns if pattern is not None)
+    pattern_counts = Counter(
+        pattern for pattern in candidate_patterns if pattern is not None
+    )
     if not pattern_counts:
         raise AIREError(
             reason="Model failed to follow instructions at every time.",
@@ -106,7 +107,9 @@ async def _async_get_pattern_from_oai(
                 model="gpt-4o",
                 messages=messages,  # type: ignore
             )
-            return _extract_pattern_from_model_response(cast(str, response.choices[0].message.content))
+            return _extract_pattern_from_model_response(
+                cast(str, response.choices[0].message.content)
+            )
 
     except Exception:
         return None
